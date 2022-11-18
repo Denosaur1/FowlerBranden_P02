@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class DrawCardsState : CardGameState
 {
-    [SerializeField] Actor[] actors;
-    [SerializeField] TurnManager turnManager;
+    
+    
     bool _completed = false;
     public override void Enter()
     {
         Debug.Log("Begin Drawing Cards");
-        actors = FindObjectsOfType<Actor>();
+        
 
-        foreach (Actor actor in actors)
+        foreach (Actor actor in scriptManager._turnManager.actors)
         {
 
             actor.DrawCard();
         }
-        turnManager.TurnOrder.Clear(); 
-        turnManager._ActiveTurns.Clear();
+        scriptManager._turnManager.TurnOrder.Clear();
+        scriptManager._turnManager._ActiveTurns.Clear();
         _completed = false;
     }
     public override void Tick()

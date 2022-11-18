@@ -6,11 +6,15 @@ public class DamageCard : Card
 {
     [SerializeField] int damageMin, damageMax;
     [SerializeField] int damageAmount;
-   
+    int targetAttempts;
     public override void CardInit()
     {
-       damageAmount = Random.Range(damageMin, damageMax);
-        _target = _turnManager.evilActors[Random.Range(0, _turnManager.evilActors.Length)];
+        damageAmount = Random.Range(damageMin, damageMax);
+        _target = _scriptManager._turnManager.evilActors[Random.Range(0, _scriptManager._turnManager.evilActors.Length)];
+        while (_target._currentHealth == 0 && targetAttempts < _scriptManager._turnManager.evilActors.Length) { 
+            _target = _scriptManager._turnManager.evilActors[Random.Range(0, _scriptManager._turnManager.evilActors.Length)]; 
+            targetAttempts++;
+        }
         _moveName = "Damage: " + damageAmount;
     }
    

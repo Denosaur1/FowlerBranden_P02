@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 0}
-  _turnManager: {fileID: 0}
+  _scriptManager: {fileID: 0}
   _moveText: {fileID: 6557485156862016841}
   _targetText: {fileID: 4501161982954337082}
   _ownerText: {fileID: 4363980154745183969}
@@ -27,8 +27,8 @@ MonoBehaviour:
   _target: {fileID: 0}
   actionDone: 0
   actionTime: 2
-  damageMin: 1
-  damageMax: 3
+  damageMin: 5
+  damageMax: 10
   damageAmount: 0
 --- !u!1001 &2061983108106287682
 PrefabInstance:

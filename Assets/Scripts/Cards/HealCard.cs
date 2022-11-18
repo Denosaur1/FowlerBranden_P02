@@ -12,7 +12,8 @@ public class HealCard : Card
     public override void CardInit()
     {
         healAmount = Random.Range(healMin, healMax);
-        _target = _turnManager.allyActors[Random.Range(0, _turnManager.allyActors.Length)];
+        _target = _scriptManager._turnManager.allyActors[Random.Range(0, _scriptManager._turnManager.allyActors.Length)];
+       
         _moveName = "Heal: " + healAmount;
     }
     

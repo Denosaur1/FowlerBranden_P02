@@ -12,7 +12,7 @@ public class EnemyDamageCard : Card
     public override void CardInit()
     {
         damageAmount = Random.Range(damageMin, damageMax);
-        _target = _turnManager.allyActors[Random.Range(0, _turnManager.allyActors.Length)];
+        _target = _scriptManager._turnManager.allyActors[Random.Range(0, _scriptManager._turnManager.allyActors.Length)];
         _moveName = "Damage: " + damageAmount;
         
     }

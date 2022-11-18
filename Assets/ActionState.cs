@@ -5,14 +5,16 @@ using UnityEngine;
 public class ActionState : CardGameState
 {
     List<Card> _Turns;
-    [SerializeField] TurnManager turnManager;
+     List<bool> _deadEvil = new List<bool>();
+     List<bool> _deadGood = new List<bool>();
+
     [SerializeField] GameObject buttons;
     int _turnCount;
     
     public override void Enter()
     {
        buttons.SetActive(false);
-        _Turns = turnManager.TurnOrder;
+        _Turns = scriptManager._turnManager.TurnOrder;
     }
     public override void Tick()
     {
@@ -27,16 +29,50 @@ public class ActionState : CardGameState
 
         }
         else {
-            Destroy(turnManager._ActiveTurns[_turnCount]);
+            Destroy(scriptManager._turnManager._ActiveTurns[_turnCount]);
             _turnCount++;
             
         
         }
-        if(_turnCount >= _Turns.Count) { 
-            StateMachine.ChangeState<DrawCardsState>();
-            buttons.SetActive(true);
-            _turnCount = 0;
+        if(_turnCount >= _Turns.Count) {
+
+
+            foreach (EvilActor actor in scriptManager._turnManager.evilActors)
+            {
+                _deadEvil.Add(actor._isDead);
+
+            }
+            foreach (AllyActor actor in scriptManager._turnManager.allyActors)
+            {
+                _deadGood.Add(actor._isDead);
+
+            }
+            if (_deadEvil.Contains(false) && _deadGood.Contains(false)) {
+                Debug.Log("Game Continues");
+                StateMachine.ChangeState<DrawCardsState>();
+                buttons.SetActive(true);
+                _turnCount = 0;
+                _deadGood.Clear();
+                _deadEvil.Clear();
+            }
+            else if (_deadEvil.Contains(false))
+                {
+                    Debug.Log("Game Lost");
+                    StateMachine.ChangeState<LossState>();
+                }
+            else {
+                    Debug.Log("Game Won");
+                    StateMachine.ChangeState<WinState>();
+                }
+
             
+
+
+           
+
+
+
+
         }
     }
 

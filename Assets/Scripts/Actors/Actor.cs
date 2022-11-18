@@ -25,16 +25,18 @@ public class Actor : MonoBehaviour
     public int _currentHealth, _maxHealth;
     [SerializeField] public TextMeshProUGUI _healthSpot;
     [SerializeField] public string _name;
-    [SerializeField] public TextMeshProUGUI _nameSpot;
+    [SerializeField] public TextMeshProUGUI _nameSpot, _namePlate;
 
     public int choice;
     public List<Actions> _possibleActions = new List<Actions>();
     public List<GameObject> _deck = new List<GameObject>();
+    public bool _isDead;
     //move to setup state
     public void Init()
     {
         _maxHealth = _health;
         _currentHealth = _health;
+        _isDead = false; 
         for (int i = 0; i < _possibleActions.Count; i++) {
             
             for (int j = 0; j < _possibleActions[i].weight+1; j++)
@@ -45,7 +47,7 @@ public class Actor : MonoBehaviour
         
         }
         if(_name == "") { _name = this.name; }
-
+        _namePlate.text = _name;
         
     }
 

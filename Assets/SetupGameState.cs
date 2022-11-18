@@ -5,24 +5,32 @@ using UnityEngine;
 
 public class SetupGameState : CardGameState
 {
-    [SerializeField]Actor[] actors;
-    [SerializeField]TurnManager turnManager;
+   
+  
     bool _activated = false;
     public override void Enter()
     {
-        Debug.Log("Setting Up Actors");
-        actors =FindObjectsOfType<Actor>();
-        foreach (Actor actor in actors) {
-           actor.Init();
-            actor.DrawCard();
-        }
-        Debug.Log("Actors Set Up!");
+        
         Debug.Log("Setting Up Turn Manager");
-        turnManager.evilActors = FindObjectsOfType<EvilActor>();
-        turnManager.allyActors = FindObjectsOfType<AllyActor>();
-        turnManager.turnMax = actors.Length;
-        _activated = false;
+        scriptManager._turnManager.actors = FindObjectsOfType<Actor>();
+        scriptManager._turnManager.evilActors = FindObjectsOfType<EvilActor>();
+        scriptManager._turnManager.allyActors = FindObjectsOfType<AllyActor>();
+       
+        scriptManager._turnManager.paused = false;
+        scriptManager._turnManager.turnMax = scriptManager._turnManager.actors.Length;
         Debug.Log("Turn Manager Set Up!");
+        Debug.Log("Setting Up Actors");
+        foreach (Actor actor in scriptManager._turnManager.actors) {
+           actor.Init();
+            //actor.DrawCard();
+        }
+        
+        Debug.Log("Actors Set Up!");
+        
+        
+        
+        _activated = false;
+       
         
     }
 
@@ -31,7 +39,7 @@ public class SetupGameState : CardGameState
         if (!_activated) {
 
             _activated = true;
-            StateMachine.ChangeState<PlayerTurnState>();
+            StateMachine.ChangeState<DrawCardsState>();
         }
     }
 

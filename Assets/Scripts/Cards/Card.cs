@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public abstract class Card : MonoBehaviour
 {
     [SerializeField] public Actor _owner;
-    [SerializeField] protected TurnManager _turnManager;
+    [SerializeField] protected SM_ScriptManager _scriptManager;
     
     [SerializeField] public TextMeshProUGUI _moveText, _targetText, _ownerText;
     
@@ -25,7 +25,7 @@ public abstract class Card : MonoBehaviour
     public float actionTime = 1;
     public void Start()
     {
-        _turnManager = FindObjectOfType<TurnManager>();
+        _scriptManager = FindObjectOfType<SM_ScriptManager>();
         _renderer = visuals.GetComponent<MeshRenderer>();
         CardInit();
         _ownerImage = _owner._image;
@@ -45,7 +45,7 @@ public abstract class Card : MonoBehaviour
     }
     public void Action() {
 
-        if(_owner._currentHealth <= 0) { 
+        if(_owner._isDead) { 
             StartCoroutine(Delayer(1));
             return;
         }
@@ -63,13 +63,13 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(visuals.activeSelf)
+        if(visuals.activeSelf && !_scriptManager._turnManager.paused)
             Hover();
     }
     private void OnMouseExit()
     {
 
-        if (visuals.activeSelf)
+        if (visuals.activeSelf && !_scriptManager._turnManager.paused)
         {
             _owner._indicator.SetActive(false);
             _target._target.SetActive(false);
@@ -77,14 +77,14 @@ public abstract class Card : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (visuals.activeSelf)
+        if (visuals.activeSelf && !_scriptManager._turnManager.paused)
         {
-            _turnManager.TurnOrder.Add(this);
+            _scriptManager._turnManager.TurnOrder.Add(this);
             _owner._indicator.SetActive(false);
             visuals.SetActive(false);
             GameObject _turnObj = Instantiate(_turnSpotPrefab);
-            
-            _turnManager._ActiveTurns.Add(_turnObj);
+
+            _scriptManager._turnManager._ActiveTurns.Add(_turnObj);
             _target._target.SetActive(false);
         }
     }

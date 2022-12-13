@@ -19,6 +19,7 @@ MonoBehaviour:
   _ownerText: {fileID: 2168908553295703236}
   visuals: {fileID: 2883846835463459766}
   _turnSpotPrefab: {fileID: 2147837969131818923, guid: e47162b5756338b4fa910c013b893ac6, type: 3}
+  _particlePrefab: {fileID: 1999050897387347429, guid: 20e987385d71e9448b3ea8242d5122af, type: 3}
   _moveName: 
   _ownerName: 
   _targetName: 
@@ -27,8 +28,8 @@ MonoBehaviour:
   _target: {fileID: 0}
   actionDone: 0
   actionTime: 2
-  healMin: 1
-  healMax: 7
+  healMin: 3
+  healMax: 12
   healAmount: 0
 --- !u!1001 &4470905324521916519
 PrefabInstance:
@@ -85,7 +86,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4737926375430200738, guid: b6732bb34e55af546b8126c76c988ab6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b6732bb34e55af546b8126c76c988ab6, type: 3}
 --- !u!1 &5676664306557448369 stripped
 GameObject:

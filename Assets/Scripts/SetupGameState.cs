@@ -17,6 +17,7 @@ public class SetupGameState : CardGameState
         scriptManager._turnManager.allyActors = FindObjectsOfType<AllyActor>();
        
         scriptManager._turnManager.paused = false;
+        scriptManager._actionState.buttons.SetActive(true);
         scriptManager._turnManager.turnMax = scriptManager._turnManager.actors.Length;
         Debug.Log("Turn Manager Set Up!");
         Debug.Log("Setting Up Actors");

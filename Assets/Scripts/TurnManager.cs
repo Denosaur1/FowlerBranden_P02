@@ -23,7 +23,7 @@ public class TurnManager : MonoBehaviour
     public bool gameWon = false;
     public bool gameLost = false;
     public bool paused = false;
-    [SerializeField] GameObject pausedMenu;
+    [SerializeField] GameObject pausedMenu, completeButton;
      
     
     void Update()
@@ -55,43 +55,12 @@ public class TurnManager : MonoBehaviour
                     }
                 }
             }
-        /*
-        foreach (EvilActor actor in scriptManager._turnManager.evilActors)
+        
+            if (TurnOrder.Count == turnMax &&!paused)
         {
-            _deadEvil.Add(actor._isDead);
-           
-
+            completeButton.SetActive(true);
         }
-        if (_deadEvil.Contains(false))
-        {
-            
-            _deadEvil.Clear();
-        }
-        else
-        {
-           
-            gameWon = true;
-            _deadEvil.Clear();
-        }
-        foreach (AllyActor actor in scriptManager._turnManager.allyActors)
-        {
-            _deadGood.Add(actor._isDead);
-            
-      
-
-        }
-        if (_deadGood.Contains(false))
-        {
-           
-            _deadGood.Clear();
-        }
-        else { 
-            gameLost = true;
-           
-            _deadGood.Clear();
-        }
-        */
-
+        else {completeButton.SetActive(false); }
 
     }
 
@@ -109,6 +78,7 @@ public class TurnManager : MonoBehaviour
                 GameObject _turnObj = _ActiveTurns[_turnCount];
                 Destroy(_turnObj);
                 _ActiveTurns.Remove(_ActiveTurns[_turnCount]);
+                scriptManager._audioManager.Play("UNDO");
 
             }
         }
@@ -120,6 +90,7 @@ public class TurnManager : MonoBehaviour
             {
                 Debug.Log("Turn Complete");
                 scriptManager._playerTurnState.turnComplete = true;
+                scriptManager._audioManager.Play("COMPLETE");
 
             }
             else { Debug.Log("Not all actions queued"); }

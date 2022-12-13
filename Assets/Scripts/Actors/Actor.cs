@@ -17,7 +17,7 @@ public class Actor : MonoBehaviour
     [SerializeField] public GameObject _target;
     [SerializeField] public Material _material;
     [SerializeField] public GameObject _currentCard;
-    [SerializeField] public GameObject _spot;
+    [SerializeField] public GameObject _spot, _deadImage;
     //info
     [SerializeField] public Sprite _image;
     [SerializeField] public Image _imageSpot;
@@ -64,5 +64,9 @@ public class Actor : MonoBehaviour
             _currentCard.GetComponent<Card>()._owner = this;
 
         }
+    }
+    private void Update()
+    {
+        _deadImage.SetActive(_isDead); 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageCard : Card
 {
     [SerializeField] int damageMin, damageMax;
-    [SerializeField] int damageAmount;
+    int damageAmount;
     int targetAttempts;
     public override void CardInit()
     {
@@ -15,7 +15,11 @@ public class DamageCard : Card
             _target = _scriptManager._turnManager.evilActors[Random.Range(0, _scriptManager._turnManager.evilActors.Length)]; 
             targetAttempts++;
         }
-        _moveName = "Damage: " + damageAmount;
+
+        if (_moveName == "")
+        {
+            _moveName = "Damage: " + damageAmount;
+        }
     }
    
 

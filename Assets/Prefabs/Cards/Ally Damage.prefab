@@ -19,6 +19,9 @@ MonoBehaviour:
   _ownerText: {fileID: 4363980154745183969}
   visuals: {fileID: 761954311522541971}
   _turnSpotPrefab: {fileID: 2147837969131818923, guid: e47162b5756338b4fa910c013b893ac6, type: 3}
+  _particlePrefab: {fileID: 1999050897387347429, guid: 75fcada534c259d4892feb7134dad8bb, type: 3}
+  _audioManager: {fileID: 0}
+  _hoverName: HOVER
   _moveName: 
   _ownerName: 
   _targetName: 
@@ -29,7 +32,6 @@ MonoBehaviour:
   actionTime: 2
   damageMin: 5
   damageMax: 10
-  damageAmount: 0
 --- !u!1001 &2061983108106287682
 PrefabInstance:
   m_ObjectHideFlags: 0

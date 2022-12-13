@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: 0}
-  _turnManager: {fileID: 0}
+  _scriptManager: {fileID: 0}
   _moveText: {fileID: 9011706225132618630}
   _targetText: {fileID: 1758528010977316341}
   _ownerText: {fileID: 1918293495696334894}
   visuals: {fileID: 3207649775272599388}
   _turnSpotPrefab: {fileID: 2147837969131818923, guid: e47162b5756338b4fa910c013b893ac6, type: 3}
+  _particlePrefab: {fileID: 1999050897387347429, guid: 75fcada534c259d4892feb7134dad8bb, type: 3}
+  _audioManager: {fileID: 0}
+  _hoverName: HOVER
   _moveName: 
   _ownerName: 
   _targetName: 

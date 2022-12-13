@@ -7,6 +7,7 @@ public class SM_ScriptManager : MonoBehaviour
 {
     [SerializeField] public GameSM _gameSM;
     [SerializeField] public TurnManager _turnManager;
+    [SerializeField] public AudioManager _audioManager;
    
     //[SerializeField] public CharacterInfo _characterInfo;
     [SerializeField] public SetupGameState _setupState;

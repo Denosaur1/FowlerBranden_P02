@@ -8,7 +8,7 @@ public class ActionState : CardGameState
      List<bool> _deadEvil = new List<bool>();
      List<bool> _deadGood = new List<bool>();
 
-    [SerializeField] GameObject buttons;
+    [SerializeField] public GameObject buttons;
     int _turnCount;
     
     public override void Enter()
